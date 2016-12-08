@@ -2,11 +2,15 @@ class List
   include Enumerable
 
   def initialize(options={})
+    @options = options
+    @head = nil
   end
 
   # add object to list based on list type
   def add(object)
-    true
+    node = Node.new(object)
+
+    return node
   end
 
   # enumerable mixin method
