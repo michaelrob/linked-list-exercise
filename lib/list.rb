@@ -1,5 +1,3 @@
-require 'pry'
-
 class List
   include Enumerable
 
@@ -11,10 +9,21 @@ class List
 
   # add object to list based on list type
   def add(object)
-    @size == 0 ? next_node = nil : next_node = @node
+
+    node = Node.new(object)
+
+    if @size == 0
+      @node = node
+    else
+      current = @node
+      while !current.next.nil?
+        current = current.next
+      end
+      current.next = node
+    end
     @size += 1
 
-    @node = Node.new(object, next_node)
+    return node
   end
 
   # enumerable mixin method
@@ -30,7 +39,7 @@ class List
 
   # returns all elements in list
   def elements
-    @options[:sorted] == 1 ? sort(entries) : entries.reverse
+    @options[:sorted] == 1 ? sort(entries) : entries
   end
 
   # returns true if the list is empty, false otherwise
@@ -52,7 +61,11 @@ class List
   def pop
     return nil if @node.nil?
 
+    popped = first
+    @size -= 1
     @node = @node.next
+
+    return popped
   end
 
 private
