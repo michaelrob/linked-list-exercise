@@ -4,11 +4,12 @@ class List
   def initialize(options={})
     @options = options
     @head = nil
+    @size = 0
   end
 
   # add object to list based on list type
   def add(object)
-    node = Node.new(object)
+    @head = Node.new(object)
   end
 
   # enumerable mixin method
@@ -21,12 +22,12 @@ class List
 
   # returns true if the list is empty, false otherwise
   def empty?
-    true
+    @size == 0 ? true : false
   end
 
   # returns length of list
   def length
-    0
+    @size
   end
 
   # returns true if object is a member of the list, false otherwise
