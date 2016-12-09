@@ -9,8 +9,6 @@ class List
   # add object to list based on list type
   def add(object)
     node = Node.new(object)
-
-    return node
   end
 
   # enumerable mixin method
