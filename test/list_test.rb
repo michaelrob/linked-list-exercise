@@ -98,4 +98,24 @@ describe List do
     end
   end
 
+  describe "#each" do
+    let(:data) { [1,2] }
+
+    before do
+      data.each do |i|
+        list.add(i)
+      end
+    end
+
+    it "should return enum" do
+      list.each.must_be_instance_of(Enumerator)
+    end
+
+    it 'should return enum containing node objects' do
+      list.each.must_include(object=1)
+      list.each.must_include(object=2)
+      list.each.must_include(size=2)
+    end
+  end
+
 end
